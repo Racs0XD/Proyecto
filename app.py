@@ -1,6 +1,7 @@
 from select import select
 import tkinter
 from tkinter import filedialog, ttk, messagebox
+from wsgiref.validate import validator
 
 
 txt = "Para empezar selecciona la cantidad de cartas"
@@ -27,7 +28,7 @@ def adivinacion():
     print("Jugara con "+str(n)+ " cartas")
 
 
-def repartidor(val):
+def repartidor1(val):
     for widgets in frameIm1.winfo_children():
         widgets.destroy()
     for widgets in frameIm2.winfo_children():
@@ -44,19 +45,19 @@ def repartidor(val):
     segunda = False
     tercera = False
     for a in range(val):
-        
+        #'OliveDrab1', 'OliveDrab2', 'OliveDrab4', 'DarkOliveGreen1', 'DarkOliveGreen2','DarkOliveGreen3', 'DarkOliveGreen4'
         carta = a            
         if primera == True:    
             carta = tkinter.Frame(frameIm1)
             carta.place(x=x1, y=y1)
-            carta.config(bg="black")
+            carta.config(bg="OliveDrab4")
             carta.config(width=100, height=120)
             carta.config(bd=10)
             carta.config(relief="ridge")
             alb = a+1
             c1.append(alb)
             Label3A = tkinter.Label(carta, text=alb)
-            Label3A.config(fg="white", bg="grey", font=("broadway 12"))
+            Label3A.config(fg="black", bg="DarkOliveGreen4", font=("broadway 12 bold"))
             Label3A.place(x=0,y=0)
             primera = False
             segunda = True
@@ -66,14 +67,14 @@ def repartidor(val):
         elif segunda == True:
             carta = tkinter.Frame(frameIm2)
             carta.place(x=x2, y=y2)
-            carta.config(bg="black")
+            carta.config(bg="OliveDrab4")
             carta.config(width=100, height=120)
             carta.config(bd=10)
             carta.config(relief="ridge")
             alb = a+1
             c2.append(alb)
             Label3A = tkinter.Label(carta, text=alb)
-            Label3A.config(fg="white", bg="grey", font=("broadway 12"))
+            Label3A.config(fg="black", bg="DarkOliveGreen4", font=("broadway 12 bold"))
             Label3A.place(x=0,y=0)
             primera = False
             segunda = False
@@ -82,14 +83,85 @@ def repartidor(val):
         elif tercera == True:
             carta = tkinter.Frame(frameIm3)
             carta.place(x=x3, y=y3)
-            carta.config(bg="black")
+            carta.config(bg="OliveDrab4")
             carta.config(width=100, height=120)
             carta.config(bd=10)
             carta.config(relief="ridge")
             alb = a+1
             c3.append(alb)
             Label3A = tkinter.Label(carta, text=alb)
-            Label3A.config(fg="white", bg="grey", font=("broadway 12"))
+            Label3A.config(fg="black", bg="DarkOliveGreen4", font=("broadway 12 bold"))
+            Label3A.place(x=0,y=0)
+            primera = True
+            segunda = False
+            tercera = False
+            x3 += 40
+
+def repartidor(val):
+    c1.clear()
+    c2.clear()
+    c3.clear()
+    for widgets in frameIm1.winfo_children():
+        widgets.destroy()
+    for widgets in frameIm2.winfo_children():
+        widgets.destroy()
+    for widgets in frameIm3.winfo_children():
+        widgets.destroy()
+    x1 = 5
+    y1 = 5
+    x2 = 5
+    y2 = 5
+    x3 = 5
+    y3 = 5
+    primera = True
+    segunda = False
+    tercera = False
+    for a in range(len(val)):
+        carta = a            
+        if primera == True:    
+            carta = tkinter.Frame(frameIm1)
+            carta.place(x=x1, y=y1)
+            carta.config(bg="OliveDrab4")
+            carta.config(width=100, height=120)
+            carta.config(bd=10)
+            carta.config(relief="ridge")
+            alb = val[a]
+            c1.append(alb)
+            Label3A = tkinter.Label(carta, text=alb)
+            Label3A.config(fg="black", bg="DarkOliveGreen4", font=("broadway 12 bold"))
+            Label3A.place(x=0,y=0)
+            primera = False
+            segunda = True
+            tercera = False
+            x1 += 40
+        
+        elif segunda == True:
+            carta = tkinter.Frame(frameIm2)
+            carta.place(x=x2, y=y2)
+            carta.config(bg="OliveDrab4")
+            carta.config(width=100, height=120)
+            carta.config(bd=10)
+            carta.config(relief="ridge")
+            alb = val[a]
+            c2.append(alb)
+            Label3A = tkinter.Label(carta, text=alb)
+            Label3A.config(fg="black", bg="DarkOliveGreen4", font=("broadway 12 bold"))
+            Label3A.place(x=0,y=0)
+            primera = False
+            segunda = False
+            tercera = True
+            x2 += 40
+        elif tercera == True:
+            carta = tkinter.Frame(frameIm3)
+            carta.place(x=x3, y=y3)
+            carta.config(bg="OliveDrab4")
+            carta.config(width=100, height=120)
+            carta.config(bd=10)
+            carta.config(relief="ridge")
+            alb = val[a]
+            c3.append(alb)
+            Label3A = tkinter.Label(carta, text=alb)
+            Label3A.config(fg="black", bg="DarkOliveGreen4", font=("broadway 12 bold"))
             Label3A.place(x=0,y=0)
             primera = True
             segunda = False
@@ -110,43 +182,43 @@ def combobox_estado():
     c3 = []
     if v == "9" :
         k = 1      
-        repartidor(int(v))
+        repartidor1(int(v))
     elif v == "15":
         k = 2
-        repartidor(int(v))
+        repartidor1(int(v))
     elif v == "21":
         k = 3
-        repartidor(int(v))
+        repartidor1(int(v))
     elif v == "27":
         k = 4
-        repartidor(int(v))
+        repartidor1(int(v))
     elif v == "33":
         k = 5
-        repartidor(int(v))
+        repartidor1(int(v))
     elif v == "39":
         k = 6
-        repartidor(int(v))
+        repartidor1(int(v))
     elif v == "45":
         k = 7
-        repartidor(int(v))
+        repartidor1(int(v))
     elif v == "51":
         k = 8
-        repartidor(int(v))
+        repartidor1(int(v))
     elif v == "57":
         k = 9
-        repartidor(int(v))
+        repartidor1(int(v))
     elif v == "63":
         k = 10
-        repartidor(int(v))
+        repartidor1(int(v))
     elif v == "69":
         k = 11
-        repartidor(int(v))
+        repartidor1(int(v))
     elif v == "75":
         k = 12
-        repartidor(int(v))
+        repartidor1(int(v))
     elif v == "81":
         k = 13
-        repartidor(int(v))
+        repartidor1(int(v))
         
 
 
@@ -155,38 +227,125 @@ def combobox_estado():
 global sel
 sel = 0
 
-def monte1():    
-    global sel
-    
+def monte1():        
+    global sel,valor
+    valor = []    
     if juega == True:
         
         txt = "Seleccióna de nuevo el grupo en el que se encuentra tu carta"
         etiqueta(txt)
-        print(v)
         if v == "9" :
             if sel < 2:
                 c2.extend(c1)
                 c2.extend(c3)
-                print(c2) 
                 sel += 1  
+                valor = c2.copy()
+                repartidor(valor)
+                if sel == 2:
+                    pb = (len(valor)/2)-0.5
+                    carta = valor[int(pb)]
+                    txt = "Tu carta es: "+str(carta)
+                    etiqueta(txt)
+                    for widgets in frameIm1.winfo_children():
+                        widgets.destroy()
+                    for widgets in frameIm2.winfo_children():
+                        widgets.destroy()
+                    for widgets in frameIm3.winfo_children():
+                        widgets.destroy()
+                    x1 = 5
+                    y1 = 5
+                    carta = tkinter.Frame(frameIm1)
+                    carta.place(x=x1, y=y1)
+                    carta.config(bg="OliveDrab4")
+                    carta.config(width=100, height=120)
+                    carta.config(bd=10)
+                    carta.config(relief="ridge")
+                    alb = valor[int(pb)]
+                    Label3A = tkinter.Label(carta, text=alb)
+                    Label3A.config(fg="black", bg="DarkOliveGreen4", font=("broadway 12 bold"))
+                    Label3A.place(x=0,y=0)
+
+
+                    
+                else:
+                    valor.clear                            
 
         elif v == "15" or v == "21" or v == "27":
-            if sel <= 3:
+            if sel < 3:
                 c2.extend(c1)
                 c2.extend(c3)
                 sel += 1 
+                valor = c2.copy()
+                repartidor(valor)
+
+                if sel == 3:
+                    pb = (len(valor)/2)-0.5
+                    carta = valor[int(pb)]
+                    txt = "Tu carta es: "+str(carta)
+                    etiqueta(txt)
+                    for widgets in frameIm1.winfo_children():
+                        widgets.destroy()
+                    for widgets in frameIm2.winfo_children():
+                        widgets.destroy()
+                    for widgets in frameIm3.winfo_children():
+                        widgets.destroy()
+                    x1 = 5
+                    y1 = 5
+                    carta = tkinter.Frame(frameIm1)
+                    carta.place(x=x1, y=y1)
+                    carta.config(bg="OliveDrab4")
+                    carta.config(width=100, height=120)
+                    carta.config(bd=10)
+                    carta.config(relief="ridge")
+                    alb = valor[int(pb)]
+                    Label3A = tkinter.Label(carta, text=alb)
+                    Label3A.config(fg="black", bg="DarkOliveGreen4", font=("broadway 12 bold"))
+                    Label3A.place(x=0,y=0)
+
+                else:
+                    valor.clear                
 
         elif v == "33" or v == "39" or v == "45" or v == "51" or v == "57"or v == "63" or v == "69" or v == "75" or v == "81":
-            if sel <= 4:
+            if sel < 4:
                 c2.extend(c1)
                 c2.extend(c3)
                 sel += 1 
+                valor = c2.copy()
+                repartidor(valor)              
+
+                if sel == 4:
+                    pb = (len(valor)/2)-0.5
+                    carta = valor[int(pb)]
+                    txt = "Tu carta es: "+str(carta)
+                    etiqueta(txt)
+                    for widgets in frameIm1.winfo_children():
+                        widgets.destroy()
+                    for widgets in frameIm2.winfo_children():
+                        widgets.destroy()
+                    for widgets in frameIm3.winfo_children():
+                        widgets.destroy()
+                    x1 = 5
+                    y1 = 5
+                    carta = tkinter.Frame(frameIm1)
+                    carta.place(x=x1, y=y1)
+                    carta.config(bg="OliveDrab4")
+                    carta.config(width=100, height=120)
+                    carta.config(bd=10)
+                    carta.config(relief="ridge")
+                    alb = valor[int(pb)]
+                    Label3A = tkinter.Label(carta, text=alb)
+                    Label3A.config(fg="black", bg="DarkOliveGreen4", font=("broadway 12 bold"))
+                    Label3A.place(x=0,y=0)
+
+                else:
+                    valor.clear 
 
         
 
 def monte2():
+    global sel,valor
+    valor = [] 
     if juega == True:
-        sel = 2
         txt = "Seleccióna de nuevo el grupo en el que se encuentra tu carta"
         etiqueta(txt)
 
@@ -195,22 +354,107 @@ def monte2():
                 c1.extend(c2)
                 c1.extend(c3)
                 sel += 1  
+                valor = c1.copy()
+                repartidor(valor)
+                if sel == 2:
+                    pb = (len(valor)/2)-0.5
+                    carta = valor[int(pb)]
+                    txt = "Tu carta es: "+str(carta)
+                    etiqueta(txt)
+                    for widgets in frameIm1.winfo_children():
+                        widgets.destroy()
+                    for widgets in frameIm2.winfo_children():
+                        widgets.destroy()
+                    for widgets in frameIm3.winfo_children():
+                        widgets.destroy()
+                    x1 = 5
+                    y1 = 5
+                    carta = tkinter.Frame(frameIm1)
+                    carta.place(x=x1, y=y1)
+                    carta.config(bg="OliveDrab4")
+                    carta.config(width=100, height=120)
+                    carta.config(bd=10)
+                    carta.config(relief="ridge")
+                    alb = valor[int(pb)]
+                    Label3A = tkinter.Label(carta, text=alb)
+                    Label3A.config(fg="black", bg="DarkOliveGreen4", font=("broadway 12 bold"))
+                    Label3A.place(x=0,y=0)
+
+                else:
+                    valor.clear  
 
         elif v == "15" or v == "21" or v == "27":
-            if sel <= 3:
+            if sel < 3:
                 c1.extend(c2)
                 c1.extend(c3)
                 sel += 1 
-                
+                valor = c1.copy()
+                repartidor(valor)
+                if sel == 3:
+                    pb = (len(valor)/2)-0.5
+                    carta = valor[int(pb)]
+                    txt = "Tu carta es: "+str(carta)
+                    etiqueta(txt)
+                    for widgets in frameIm1.winfo_children():
+                        widgets.destroy()
+                    for widgets in frameIm2.winfo_children():
+                        widgets.destroy()
+                    for widgets in frameIm3.winfo_children():
+                        widgets.destroy()
+                    x1 = 5
+                    y1 = 5
+                    carta = tkinter.Frame(frameIm1)
+                    carta.place(x=x1, y=y1)
+                    carta.config(bg="OliveDrab4")
+                    carta.config(width=100, height=120)
+                    carta.config(bd=10)
+                    carta.config(relief="ridge")
+                    alb = valor[int(pb)]
+                    Label3A = tkinter.Label(carta, text=alb)
+                    Label3A.config(fg="black", bg="DarkOliveGreen4", font=("broadway 12 bold"))
+                    Label3A.place(x=0,y=0)
+
+                else:
+                    valor.clear
+
         elif v == "33" or v == "39" or v == "45" or v == "51" or v == "57"or v == "63" or v == "69" or v == "75" or v == "81":
-            if sel <= 4:
+            if sel < 4:
                 c1.extend(c2)
                 c1.extend(c3)
                 sel += 1 
+                valor = c1.copy()
+                repartidor(valor)
+                if sel == 4:
+                    pb = (len(valor)/2)-0.5
+                    carta = valor[int(pb)]
+                    txt = "Tu carta es: "+str(carta)
+                    etiqueta(txt)
+                    for widgets in frameIm1.winfo_children():
+                        widgets.destroy()
+                    for widgets in frameIm2.winfo_children():
+                        widgets.destroy()
+                    for widgets in frameIm3.winfo_children():
+                        widgets.destroy()
+                    x1 = 5
+                    y1 = 5
+                    carta = tkinter.Frame(frameIm1)
+                    carta.place(x=x1, y=y1)
+                    carta.config(bg="OliveDrab4")
+                    carta.config(width=100, height=120)
+                    carta.config(bd=10)
+                    carta.config(relief="ridge")
+                    alb = valor[int(pb)]
+                    Label3A = tkinter.Label(carta, text=alb)
+                    Label3A.config(fg="black", bg="DarkOliveGreen4", font=("broadway 12 bold"))
+                    Label3A.place(x=0,y=0)
+
+                else:
+                    valor.clear 
 
 def monte3():
+    global sel,valor
+    valor = [] 
     if juega == True:
-        sel = 3
         txt = "Seleccióna de nuevo el grupo en el que se encuentra tu carta"
         etiqueta(txt)    
         if v == "9" :
@@ -218,17 +462,102 @@ def monte3():
                 c1.extend(c3)
                 c1.extend(c2)
                 sel += 1  
+                valor = c1.copy()
+                repartidor(valor)
+                if sel == 2:
+                    pb = (len(valor)/2)-0.5
+                    carta = valor[int(pb)]
+                    txt = "Tu carta es: "+str(carta)
+                    etiqueta(txt)
+                    for widgets in frameIm1.winfo_children():
+                        widgets.destroy()
+                    for widgets in frameIm2.winfo_children():
+                        widgets.destroy()
+                    for widgets in frameIm3.winfo_children():
+                        widgets.destroy()
+                    x1 = 5
+                    y1 = 5
+                    carta = tkinter.Frame(frameIm1)
+                    carta.place(x=x1, y=y1)
+                    carta.config(bg="OliveDrab4")
+                    carta.config(width=100, height=120)
+                    carta.config(bd=10)
+                    carta.config(relief="ridge")
+                    alb = valor[int(pb)]
+                    Label3A = tkinter.Label(carta, text=alb)
+                    Label3A.config(fg="black", bg="DarkOliveGreen4", font=("broadway 12 bold"))
+                    Label3A.place(x=0,y=0)
+
+                else:
+                    valor.clear  
 
         elif v == "15" or v == "21" or v == "27":
-            if sel <= 3:
+            if sel < 3:
                 c1.extend(c3)
                 c1.extend(c2)
                 sel += 1 
+                valor = c1.copy()
+                repartidor(valor)
+                if sel == 3:
+                    pb = (len(valor)/2)-0.5
+                    carta = valor[int(pb)]
+                    txt = "Tu carta es: "+str(carta)
+                    etiqueta(txt)
+                    for widgets in frameIm1.winfo_children():
+                        widgets.destroy()
+                    for widgets in frameIm2.winfo_children():
+                        widgets.destroy()
+                    for widgets in frameIm3.winfo_children():
+                        widgets.destroy()
+                    x1 = 5
+                    y1 = 5
+                    carta = tkinter.Frame(frameIm1)
+                    carta.place(x=x1, y=y1)
+                    carta.config(bg="OliveDrab4")
+                    carta.config(width=100, height=120)
+                    carta.config(bd=10)
+                    carta.config(relief="ridge")
+                    alb = valor[int(pb)]
+                    Label3A = tkinter.Label(carta, text=alb)
+                    Label3A.config(fg="black", bg="DarkOliveGreen4", font=("broadway 12 bold"))
+                    Label3A.place(x=0,y=0)
+
+                else:
+                    valor.clear
+
         elif v == "33" or v == "39" or v == "45" or v == "51" or v == "57"or v == "63" or v == "69" or v == "75" or v == "81":
-            if sel <= 4:
+            if sel < 4:
                 c1.extend(c3)
                 c1.extend(c2)
                 sel += 1 
+                valor = c1.copy()
+                repartidor(valor)
+                if sel == 4:
+                    pb = (len(valor)/2)-0.5
+                    carta = valor[int(pb)]
+                    txt = "Tu carta es: "+str(carta)
+                    etiqueta(txt)
+                    for widgets in frameIm1.winfo_children():
+                        widgets.destroy()
+                    for widgets in frameIm2.winfo_children():
+                        widgets.destroy()
+                    for widgets in frameIm3.winfo_children():
+                        widgets.destroy()
+                    x1 = 5
+                    y1 = 5
+                    carta = tkinter.Frame(frameIm1)
+                    carta.place(x=x1, y=y1)
+                    carta.config(bg="OliveDrab4")
+                    carta.config(width=100, height=120)
+                    carta.config(bd=10)
+                    carta.config(relief="ridge")
+                    alb = valor[int(pb)]
+                    Label3A = tkinter.Label(carta, text=alb)
+                    Label3A.config(fg="black", bg="DarkOliveGreen4", font=("broadway 12 bold"))
+                    Label3A.place(x=0,y=0)
+
+                else:
+                    valor.clear 
 
 
    
